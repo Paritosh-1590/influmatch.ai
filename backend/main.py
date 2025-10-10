@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()  # loads .env in backend/
+print("DEBUG >> OPENAI_API_KEY loaded?", bool(os.getenv("OPENAI_API_KEY")))
 
 app = FastAPI(title="InfluMatch.ai Chatbot API")
 
