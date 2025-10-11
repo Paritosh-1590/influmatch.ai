@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
+import Logo from "@/components/Logo";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Login = () => {
@@ -16,29 +17,25 @@ const Login = () => {
   const handleCompanyLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock login - in real app, authenticate with backend
-    navigate("/dashboard");
+    navigate("/profile"); // ✅ go to company profile
   };
 
   const handleInfluencerLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock login - in real app, authenticate with backend
-    navigate("/profile");
+    navigate("/influencer-dashboard"); // ✅ go to influencer dashboard
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-secondary to-background px-4">
       <Card className="w-full max-w-md p-8 shadow-2xl">
-        <Link to="/" className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl">IM</span>
-          </div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            InfluMatch.ai
-          </span>
-        </Link>
+        <Logo />
+
 
         <h1 className="text-3xl font-bold text-center mb-2">Welcome Back</h1>
-        <p className="text-center text-muted-foreground mb-8">Sign in to your account</p>
+        <p className="text-center text-muted-foreground mb-8">
+          Sign in to your account
+        </p>
 
         <Tabs defaultValue="company" className="w-full">
           <TabsList className="grid w-full grid-cols-2 mb-8">
@@ -46,6 +43,7 @@ const Login = () => {
             <TabsTrigger value="influencer">Influencer</TabsTrigger>
           </TabsList>
 
+          {/* 🏢 Company Login */}
           <TabsContent value="company">
             <form onSubmit={handleCompanyLogin} className="space-y-4">
               <div className="space-y-2">
@@ -75,13 +73,17 @@ const Login = () => {
               </Button>
               <p className="text-center text-sm text-muted-foreground">
                 Don't have an account?{" "}
-                <Link to="/signup/company" className="text-primary hover:underline font-medium">
+                <Link
+                  to="/signup/company"
+                  className="text-primary hover:underline font-medium"
+                >
                   Sign up
                 </Link>
               </p>
             </form>
           </TabsContent>
 
+          {/* 🌟 Influencer Login */}
           <TabsContent value="influencer">
             <form onSubmit={handleInfluencerLogin} className="space-y-4">
               <div className="space-y-2">
@@ -111,7 +113,10 @@ const Login = () => {
               </Button>
               <p className="text-center text-sm text-muted-foreground">
                 Don't have an account?{" "}
-                <Link to="/signup/influencer" className="text-primary hover:underline font-medium">
+                <Link
+                  to="/signup/influencer"
+                  className="text-primary hover:underline font-medium"
+                >
                   Sign up
                 </Link>
               </p>

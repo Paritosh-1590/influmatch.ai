@@ -4,3 +4,30 @@
 node_modules/
 frontend/node_modules/
 backend/node_modules/
+venv/
+backend/venv/
+# Ignore Python virtual environments
+venv/
+backend/venv/
+
+# Node modules
+node_modules/
+frontend/node_modules/
+
+# Build output
+dist/
+build/
+
+# Python cache and logs
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# Environment and IDE files
+.env
+*.sqlite3
+*.db
+*.idea/
+*.vscode/
+.DS_Store

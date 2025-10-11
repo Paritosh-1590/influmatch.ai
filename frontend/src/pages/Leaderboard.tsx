@@ -14,15 +14,17 @@ const Leaderboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const influencers = [
-    { rank: 1, name: "Sarah Martinez", platform: "Instagram", followers: "2.5M", engagement: "9.2%", matches: 124, badge: "gold" },
-    { rank: 2, name: "Alex Chen", platform: "TikTok", followers: "1.8M", engagement: "8.9%", matches: 98, badge: "silver" },
-    { rank: 3, name: "Emma Johnson", platform: "YouTube", followers: "3.1M", engagement: "7.5%", matches: 87, badge: "bronze" },
-    { rank: 4, name: "Mike Rodriguez", platform: "Instagram", followers: "980K", engagement: "8.1%", matches: 76 },
-    { rank: 5, name: "Lisa Wang", platform: "TikTok", followers: "1.2M", engagement: "9.5%", matches: 72 },
-    { rank: 6, name: "David Kim", platform: "YouTube", followers: "850K", engagement: "7.8%", matches: 65 },
-    { rank: 7, name: "Sophie Brown", platform: "Instagram", followers: "1.5M", engagement: "8.3%", matches: 61 },
-    { rank: 8, name: "James Wilson", platform: "TikTok", followers: "720K", engagement: "8.7%", matches: 58 },
-  ];
+    // No changes in layout — only added image URLs and AvatarImage use.
+
+{ rank: 1, name: "Sarah Martinez", platform: "Instagram", followers: "2.5M", engagement: "9.2%", matches: 124, badge: "gold", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+{ rank: 2, name: "Alex Chen", platform: "TikTok", followers: "1.8M", engagement: "8.9%", matches: 98, badge: "silver", image: "https://randomuser.me/api/portraits/men/32.jpg" },
+{ rank: 3, name: "Emma Johnson", platform: "YouTube", followers: "3.1M", engagement: "7.5%", matches: 87, badge: "bronze", image: "https://randomuser.me/api/portraits/women/65.jpg" },
+{ rank: 4, name: "Mike Rodriguez", platform: "Instagram", followers: "980K", engagement: "8.1%", matches: 76, image: "https://randomuser.me/api/portraits/men/75.jpg" },
+{ rank: 5, name: "Lisa Wang", platform: "TikTok", followers: "1.2M", engagement: "9.5%", matches: 72, image: "https://randomuser.me/api/portraits/women/12.jpg" },
+{ rank: 6, name: "David Kim", platform: "YouTube", followers: "850K", engagement: "7.8%", matches: 65, image: "https://randomuser.me/api/portraits/men/60.jpg" },
+{ rank: 7, name: "Sophie Brown", platform: "Instagram", followers: "1.5M", engagement: "8.3%", matches: 61, image: "https://randomuser.me/api/portraits/women/21.jpg" },
+{ rank: 8, name: "James Wilson", platform: "TikTok", followers: "720K", engagement: "8.7%", matches: 58, image: "https://randomuser.me/api/portraits/men/40.jpg" },
+];
 
   const getBadgeColor = (badge?: string) => {
     switch (badge) {
@@ -131,11 +133,12 @@ const Leaderboard = () => {
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar className="w-10 h-10 border-2 border-primary/20 shadow-sm">
-                          <AvatarImage src="" alt={influencer.name} />
+                          <AvatarImage src={influencer.image} alt={influencer.name} />
                           <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                            {influencer.name.split(' ').map(n => n[0]).join('')}
-                          </AvatarFallback>
+                           {influencer.name.split(" ").map((n) => n[0]).join("")}
+                         </AvatarFallback>
                         </Avatar>
+
                         <span className="font-semibold">{influencer.name}</span>
                       </div>
                     </TableCell>

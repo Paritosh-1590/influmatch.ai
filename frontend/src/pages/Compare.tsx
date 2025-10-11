@@ -16,7 +16,8 @@ const Compare = () => {
       avgComments: "12K",
       estimatedCost: "$5,000",
       niche: "Fashion",
-      audience: { age: "18-34", location: "US, UK", gender: "75% Female" }
+      audience: { age: "18-34", location: "US, UK", gender: "75% Female" },
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     {
       name: "Alex Chen",
@@ -27,8 +28,9 @@ const Compare = () => {
       avgComments: "8K",
       estimatedCost: "$3,500",
       niche: "Tech",
-      audience: { age: "16-28", location: "US, CA", gender: "60% Male" }
-    }
+      audience: { age: "16-28", location: "US, CA", gender: "60% Male" },
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+    },
   ];
 
   const metrics = [
@@ -40,7 +42,6 @@ const Compare = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b p-4 flex items-center gap-4">
         <Link to="/dashboard">
           <Button variant="ghost" size="icon">
@@ -56,15 +57,14 @@ const Compare = () => {
             Side-by-side comparison of influencer metrics and performance
           </p>
 
-          {/* Comparison Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             {influencers.map((influencer, idx) => (
               <Card key={idx} className="p-6">
                 <div className="text-center mb-6">
                   <Avatar className="w-24 h-24 mx-auto mb-4 border-2 border-primary/20 shadow-lg">
-                    <AvatarImage src="" alt={influencer.name} />
+                    <AvatarImage src={influencer.image} alt={influencer.name} />
                     <AvatarFallback className="text-4xl font-bold bg-primary/20 text-primary">
-                      {influencer.name.split(' ').map(n => n[0]).join('')}
+                      {influencer.name.split(" ").map((n) => n[0]).join("")}
                     </AvatarFallback>
                   </Avatar>
                   <h2 className="text-2xl font-bold mb-2">{influencer.name}</h2>
@@ -74,14 +74,19 @@ const Compare = () => {
 
                 <div className="space-y-4">
                   {metrics.map((metric) => {
-                    const value = influencer[metric.key as keyof typeof influencer];
+                    // extract icon into a capitalized variable for TSX safety
+                    const Icon = metric.icon;
+                    // lookup value (safe)
+                    const rawValue = (influencer as any)[metric.key];
+                    const value = typeof rawValue === "undefined" ? "-" : rawValue;
+
                     return (
                       <div key={metric.key} className="flex items-center justify-between p-3 bg-secondary rounded-lg">
                         <div className="flex items-center gap-2">
-                          <metric.icon className="w-5 h-5 text-primary" />
+                          <Icon className="w-5 h-5 text-primary" />
                           <span className="text-sm text-muted-foreground">{metric.label}</span>
                         </div>
-                        <span className="font-semibold">{typeof value === 'string' ? value : JSON.stringify(value)}</span>
+                        <span className="font-semibold">{value}</span>
                       </div>
                     );
                   })}
@@ -101,13 +106,12 @@ const Compare = () => {
             ))}
           </div>
 
-          {/* Winner Recommendation */}
+          {/* AI Recommendation / Winner */}
           <Card className="p-6 bg-primary/5 border-primary">
             <h3 className="text-xl font-bold mb-2 text-center">AI Recommendation</h3>
             <p className="text-center text-muted-foreground mb-4">
-              Based on your campaign goals and target audience, we recommend{" "}
-              <span className="font-semibold text-primary">{influencers[0].name}</span> for better engagement
-              and ROI potential.
+              Based on your campaign goals, we recommend{" "}
+              <span className="font-semibold text-primary">{influencers[0].name}</span> for higher engagement and ROI.
             </p>
             <div className="flex justify-center gap-4">
               <Button variant="hero">Start Campaign</Button>

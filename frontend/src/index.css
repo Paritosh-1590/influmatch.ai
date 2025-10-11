@@ -119,3 +119,58 @@ All colors MUST be HSL.
     }
   }
 }
+/* FullCalendar overrides */
+/* === FullCalendar Enhancements === */
+.fc {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(6 100% 97%) 100%);
+  border-radius: 1rem;
+  box-shadow: 0 6px 24px hsl(6 100% 69% / 0.1);
+  padding: 1rem;
+}
+
+.fc .fc-toolbar-title {
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  color: hsl(6, 100%, 40%);
+}
+
+.fc .fc-button-primary {
+  background: linear-gradient(135deg, hsl(6 100% 69%), hsl(15 100% 72%)) !important;
+  border: none !important;
+  font-weight: 500 !important;
+  border-radius: 0.5rem !important;
+  transition: all 0.3s ease;
+}
+
+.fc .fc-button-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.fc .fc-daygrid-day {
+  transition: background-color 0.25s ease;
+  border-radius: 0.5rem;
+}
+
+.fc .fc-daygrid-day:hover {
+  background-color: hsl(6 100% 97%) !important;
+  cursor: pointer;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+.fc .fc-event {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 3px 8px hsl(6 100% 69% / 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.fc .fc-event:hover {
+  transform: scale(1.03);
+  filter: brightness(1.05);
+}
+
+
