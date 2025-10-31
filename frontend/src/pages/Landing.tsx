@@ -58,23 +58,26 @@ const Landing = () => {
   const pricingPlans = [
     {
       name: "Free",
-      price: "$0",
+      price: "₹0",
+      period: "",
       features: ["Up to 5 campaigns", "Basic analytics", "Email support", "1 team member"],
       cta: "Get Started",
       popular: false
     },
     {
-      name: "Growth",
-      price: "$199",
+      name: "Monthly",
+      price: "₹1479",
+      period: "/month",
       features: ["Unlimited campaigns", "Advanced analytics", "Priority support", "10 team members", "AI optimization", "Custom reports"],
       cta: "Start Free Trial",
       popular: true
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      features: ["Everything in Growth", "Dedicated account manager", "Custom integrations", "Unlimited team members", "White-label options", "SLA guarantee"],
-      cta: "Contact Sales",
+      name: "Yearly",
+      price: "₹9,579",
+      period: "/year",
+      features: ["Unlimited campaigns", "Advanced analytics", "Priority support", "10 team members", "AI optimization", "Custom reports"],
+      cta: "Start Free Trial",
       popular: false
     }
   ];
@@ -234,7 +237,7 @@ const Landing = () => {
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <div className="mb-6">
                   <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.price !== "Custom" && <span className="text-muted-foreground">/month</span>}
+                  <span className="text-muted-foreground">{plan.period}</span>
                 </div>
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
